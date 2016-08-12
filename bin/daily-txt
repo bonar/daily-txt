@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'daily/txt'
+Daily::Txt::CLI.bootstrap(ARGV)
+

@@ -1,7 +1,8 @@
-require "daily/txt/version"
-
 module Daily
   module Txt
-    # Your code goes here...
   end
 end
+
+require "daily/txt/version"
+require "daily/txt/cli"
+
