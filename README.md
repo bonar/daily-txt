@@ -1,8 +1,6 @@
 # Daily::Txt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/daily/txt`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+daily-txt is command line script for creating and listing text files that has a filename with current date.
 
 ## Installation
 
@@ -22,7 +20,67 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+$ daily-txt
+```
+
+A command above creates text file at /${ROOT}/text/{$YYYY}/{$MM}/${YYYY}_${MM}_${DD}.txt
+and open it with default editor. If it already exists, just open it for appending.
+
+### Initialize
+
+daily-txt command asks ROOT directory and default editor at initial startup, and stores
+setting to ~/.daily-txt.rc.
+
+```
+$ daily-txt
+
+Document Root? (/Document/daily-txt/): 
+Default Editor? (/usr/bin/vim): 
+
+Setting stored to ~/.daily-txt.rc
+```
+
+### Listing
+
+List text files
+
+```
+$ daily-txt -l
+
+/your/root/text/2016/04/2016_04_23.txt
+/your/root/text/2016/04/2016_04_24.txt
+/your/root/text/2016/04/2016_05_04.txt
+```
+
+### Open past files
+
+```
+daily-txt -p 1
+daily-txt -p 2
+daily-txt -p 3
+```
+
+### Search
+
+```
+$ daily-txt -s {search text}
+```
+
+### STDIN redirect 
+
+```
+$ cat memo.txt | daily-txt -t "useful memo"
+```
+
+insers STDIN input to text file for today with timestamp.
+
+```
+[2016/04/19 14:01:35 useful memo]------
+this is memo
+this is memo
+---------------------------
+```
 
 ## Development
 
