@@ -7,8 +7,8 @@ class Daily::Txt::Config
   class ParseError < StandardError; end
   class Invalid < StandardError; end
 
-  DEFAULT_CONFIG_PATH = "#{Dir.home}/.dailymd_config.json"
-  DEFAULT_ROOT_DIR = "daily_md"
+  DEFAULT_CONFIG_PATH = "#{Dir.home}/.daily_txt_config.json"
+  DEFAULT_ROOT_DIR = "daily_txt"
   REQUIRED_KEYS = [
     "home",
     "editor",
