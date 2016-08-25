@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["bonar"]
   spec.email         = ["bonar@me.com"]
 
-  spec.summary       = %q{command line tool for today's markdown memo}
-  spec.description   = %q{daily-md is command line script for creating and listing markdown text files that has a filename with current date.}
+  spec.summary       = %q{command line tool for daily text file memo}
+  spec.description   = %q{daily-txt is command line script for creating and listing text files wth a current date filename.}
   spec.homepage      = "http://bonar.jp/"
   spec.license       = "MIT"
 
