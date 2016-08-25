@@ -53,35 +53,6 @@ $ daily-txt -l
 /your/root/text/2016/04/2016_05_04.txt
 ```
 
-### Open past files
-
-```
-daily-txt -p 1
-daily-txt -p 2
-daily-txt -p 3
-```
-
-### Search
-
-```
-$ daily-txt -s {search text}
-```
-
-### STDIN redirect 
-
-```
-$ cat memo.txt | daily-txt -t "useful memo"
-```
-
-insers STDIN input to text file for today with timestamp.
-
-```
-[2016/04/19 14:01:35 useful memo]------
-this is memo
-this is memo
----------------------------
-```
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
