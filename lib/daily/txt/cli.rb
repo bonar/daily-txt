@@ -42,6 +42,8 @@ class Daily::Txt::CLI
         end
         config = Daily::Txt::Config.create_default
       end
+
+      Daily::Txt::PathBuilder.prepare_basedir(config["home"])
       
       dispatch_action(option, config)
     end
