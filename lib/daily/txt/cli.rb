@@ -18,6 +18,9 @@ class Daily::Txt::CLI
       parser.on('-l', '--list', 'list text files') do |path|
         option[:mode] = :list
       end
+      parser.on('--ascending', 'make list order ascending') do
+        option[:asc] = true
+      end
 
       begin
         parser.parse!(argv)
@@ -51,15 +54,22 @@ class Daily::Txt::CLI
     def dispatch_action(option, config)
       case option[:mode]
       when :list
-        list(config)
+        list(config, option)
       else
         open_today(config)
       end
     end
 
-    def list(config)
+    def list(config, option)
       visitor = File::Visitor.new
       visitor.add_filter(:ext, Daily::Txt::PathBuilder::DEFAULT_EXT)
+
+      if option[:asc]
+        visitor.set_direction(:asc)
+      else
+        visitor.set_direction(:desc)
+      end
+
       visitor.visit(config["home"]) do |path|
         puts path
       end
