@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{command line tool for daily text file memo}
   spec.description   = %q{daily-txt is command line script for creating and listing text files wth a current date filename.}
-  spec.homepage      = "http://bonar.jp/"
+  spec.homepage      = "https://github.com/bonar/daily-txt"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
