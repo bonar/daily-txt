@@ -8,12 +8,12 @@ daily-txt is command line script for creating and listing text files that has a 
 $ daily-txt
 ```
 
-A command above creates text file at /${ROOT}/text/{$YYYY}/{$MM}/${YYYY}_${MM}_${DD}.txt
-and open it with default editor. If it already exists, just open it for appending.
+The command above creates text file at /${ROOT}/text/{$YYYY}/{$MM}/${YYYY}_${MM}_${DD}.txt
+and open it with default editor. If it already exists, just open it for editing.
 
 ### Initialize
 
-daily-txt command asks ROOT directory and default editor at initial startup, and stores
+At initial startup, daily-txt command asks ROOT directory and default editor. And it stores
 setting to ~/.daily-txt.rc.
 
 ```
