@@ -25,6 +25,14 @@ Default Editor? (/usr/bin/vim):
 Setting stored to ~/.daily-txt.rc
 ```
 
+### Open past file
+
+-p 1 for yesterday, -p 2 for the day before yesterday.
+
+```
+$ daily-txt -p 1
+```
+
 ### Listing
 
 List text files
@@ -35,6 +43,12 @@ $ daily-txt -l
 /your/root/text/2016/04/2016_04_23.txt
 /your/root/text/2016/04/2016_04_24.txt
 /your/root/text/2016/04/2016_05_04.txt
+```
+
+### Search files with text
+
+```
+$ daily-txt -s "search query"
 ```
 
 ## Installation
