@@ -3,6 +3,8 @@ require "daily/txt/path_builder"
 require 'date'
 require 'optparse'
 require 'file/visitor'
+require 'term/ansicolor'
+include Term::ANSIColor
 
 class Daily::Txt::CLI
 
@@ -14,6 +16,10 @@ class Daily::Txt::CLI
 
       parser.on('-f PATH', 'config file path') do |path|
         option[:config_path] = path
+      end
+      parser.on('-s VAL', '--search VAL', 'search file including VAL') do |query|
+        option[:mode]  = :search
+        option[:query] = query
       end
       parser.on('-l', '--list', 'list text files') do |path|
         option[:mode] = :list
@@ -62,6 +68,8 @@ class Daily::Txt::CLI
       case option[:mode]
       when :list
         list(config, option)
+      when :search
+        search(config, option[:query])
       else
         open_today(config, option[:past])
       end
@@ -79,6 +87,30 @@ class Daily::Txt::CLI
 
       visitor.visit(config["home"]) do |path|
         puts path
+      end
+    end
+
+    def search(config, query)
+      visitor = File::Visitor.new
+      visitor.add_filter(:ext, Daily::Txt::PathBuilder::DEFAULT_EXT)
+      visitor.set_direction(:desc)
+
+      hilighted_query = "#{yellow}#{query}#{reset}"
+      visitor.visit(config["home"]) do |path|
+        header_printed = false
+        File.open(path) do |file|
+          header_printed = false
+          file.each_line do |line|
+            if line.match(/#{query}/)
+              unless header_printed
+                print "\n", green, path, reset, "\n"
+                header_printed = true
+              end
+              line = line.gsub(query, hilighted_query)
+              puts line
+            end
+          end
+        end
       end
     end
 
