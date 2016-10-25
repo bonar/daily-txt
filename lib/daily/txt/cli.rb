@@ -21,6 +21,13 @@ class Daily::Txt::CLI
       parser.on('--ascending', 'make list order ascending') do
         option[:asc] = true
       end
+      parser.on('-p VAL', 'open file for VAL day(s) ago') do |day|
+        past = day.to_i
+        if past <= 0
+          abort "invalid value for -p: #{day}"
+        end
+        option[:past] = past
+      end
 
       begin
         parser.parse!(argv)
@@ -56,7 +63,7 @@ class Daily::Txt::CLI
       when :list
         list(config, option)
       else
-        open_today(config)
+        open_today(config, option[:past])
       end
     end
 
@@ -75,9 +82,9 @@ class Daily::Txt::CLI
       end
     end
 
-    def open_today(config)
+    def open_today(config, past)
       path = Daily::Txt::PathBuilder.by_date(
-        config["home"], Date.today)
+        config["home"], (Date.today - (past || 0)))
       Daily::Txt::PathBuilder.prepare_basedir(path)
       Daily::Txt::System.exec(config["editor"], path)
     end
